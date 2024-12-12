@@ -66,10 +66,4 @@ on [dbo].[pizzas].pizza_id =[dbo].[order_details].pizza_id)*100
  join [dbo].[order_details] on [dbo].[order_details].pizza_id= [dbo].[pizzas].pizza_id
  group by [dbo].[pizza_types].category
 
- --analyze the cumulative revenue generated overtime 
-select [dbo].[orders].date,sum(revenue) over(order by [dbo].[orders].date) as cum_revenue 
-from
-(select [dbo].[orders].date,sum([dbo].[order_details].quantity *[dbo].[pizzas].price) as revenue from [dbo].[order_details]
-join [dbo].[pizzas] on [dbo].[order_details].pizza_id= pizzas.pizza_id
-join [dbo].[orders] on [dbo].[orders].order_id= [dbo].[order_details].order_id
-group by [dbo].[orders].date )
+ 
